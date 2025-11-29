@@ -2,7 +2,6 @@ blueprint:
   name: Thermostat Night Mode
   description: Set Better Thermostats to night/day temperature based on a schedule.
   domain: automation
-  source_url: https://github.com/Master2386/homeassistant/blob/main/blueprints/Thermostat_Night_Mode.yml
 
   input:
     night_times_schedule:
@@ -22,13 +21,13 @@ blueprint:
             integration: better_thermostat
 
     night_temp:
-      name: Night Temperature
+      name: Night Temperature (input_number)
       selector:
         entity:
           domain: input_number
 
     day_temp:
-      name: Day Temperature
+      name: Day Temperature (input_number)
       selector:
         entity:
           domain: input_number
