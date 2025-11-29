@@ -47,7 +47,7 @@ trigger:
 
 condition: []
 
-action:
+actions:
   - if:
       - condition: state
         entity_id: !input night_times_schedule
