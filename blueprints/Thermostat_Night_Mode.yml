@@ -55,10 +55,10 @@ actions:
     then:
       - action: climate.set_temperature
         data:
-          temperature: "{{ states('!input night_temp') | float }}"
+          temperature: "{{ states((!input night_temp)) | float }}"
         target: !input thermostat_target
     else:
       - action: climate.set_temperature
         data:
-          temperature: "{{ states('!input day_temp') | float }}"
+          temperature: "{{ states((!input day_temp)) | float }}"
         target: !input thermostat_target
