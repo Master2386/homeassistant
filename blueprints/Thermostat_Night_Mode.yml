@@ -55,10 +55,10 @@ action:
     then:
       - service: better_thermostat.set_temp_target_temperature
         data:
-          temperature: !input night_temp
+          temperature: "{{ states(!input night_temp) | float }}"
         target: !input thermostat_target
     else:
       - service: better_thermostat.set_temp_target_temperature
         data:
-          temperature: !input day_temp
+          temperature: "{{ states(!input day_temp) | float }}"
         target: !input thermostat_target
