@@ -47,8 +47,8 @@ trigger:
 
 
 variables:
-  day_temp_value: "{{ states('!input day_temp') | float }}"
-  night_temp_value: "{{ states('!input night_temp') | float }}"
+  day_temp_value: "{{ states((!input day_temp)) | float }}"
+  night_temp_value: "{{ states((!input night_temp)) | float }}"
 
 condition: []
 
