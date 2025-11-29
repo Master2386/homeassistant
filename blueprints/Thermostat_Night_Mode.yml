@@ -2,7 +2,7 @@ blueprint:
   name: Thermostat Night Mode
   description: Set BT Thermostats to night mode if Schedule event is active.
   domain: automation
-  source_url: https://github.com/KartoffelToby/better_thermostat/blob/master/blueprints/night_mode.yaml
+  source_url: https://github.com/Master2386/homeassistant/blob/main/blueprints/Thermostat_Night_Mode.yml
   input:
     night_times_schedule:
       name: Schedule helper
@@ -20,15 +20,19 @@ blueprint:
             integration: better_thermostat
             domain: climate
 
+    day_temp:
+      name: Day Temperature
+      selector:
+        target:
+          entity:
+            domain: input_number
+
     night_temp:
       name: Night Temperature
-      description: The target temperature at night
-      default: 18
       selector:
-        number:
-          min: 5
-          max: 35
-          unit_of_measurement: °C
+        target:
+          entity:
+            domain: input_number
 
 mode: queued
 max_exceeded: silent
@@ -54,6 +58,7 @@ action:
           temperature: !input night_temp
         target: !input thermostat_target
     else:
-      - service: better_thermostat.restore_saved_target_temperature
-        data: {}
+      - service: better_thermostat.set_temp_target_temperature
+        data:
+          temperature: !input day_temp
         target: !input thermostat_target
