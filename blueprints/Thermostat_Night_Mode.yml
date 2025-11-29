@@ -21,13 +21,13 @@ blueprint:
             integration: better_thermostat
 
     night_temp:
-      name: Night Temperature (input_number)
+      name: Night Temperature
       selector:
         entity:
           domain: input_number
 
     day_temp:
-      name: Day Temperature (input_number)
+      name: Day Temperature
       selector:
         entity:
           domain: input_number
@@ -56,9 +56,9 @@ action:
       - service: better_thermostat.set_temp_target_temperature
         target: !input thermostat_target
         data:
-          temperature: "{{ states( !input night_temp ) | float }}"
+          temperature: "{{ states(( !input night_temp )) | float }}"
     else:
       - service: better_thermostat.set_temp_target_temperature
         target: !input thermostat_target
         data:
-          temperature: "{{ states( !input day_temp ) | float }}"
+          temperature: "{{ states(( !input day_temp )) | float }}"
