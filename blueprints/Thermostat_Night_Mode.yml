@@ -53,12 +53,12 @@ actions:
         entity_id: !input night_times_schedule
         state: "on"
     then:
-      - action: better_thermostat.set_temp_target_temperature
+      - action: climate.set_temperature
         data:
           temperature: "{{ states('!input night_temp') | float }}"
         target: !input thermostat_target
     else:
-      - action: better_thermostat.set_temp_target_temperature
+      - action: climate.set_temperature
         data:
           temperature: "{{ states('!input day_temp') | float }}"
         target: !input thermostat_target
